@@ -2,10 +2,12 @@
   <div id="app">
     <div class="hero is-white is-gradient is-bold">
       <div class="hero-body">
-        <h1 class="title">
-          <span class="has-text-success">torre</span>
-          <!-- <span class="subtitle">sub</span> -->
-        </h1>
+        <div class="mb-6 title-content">
+          <img id="torreLogo" alt="torre_logo" src="./assets/torre.png" />
+          <h1 class="title ml-1">
+            <span class="">torre</span>
+          </h1>
+        </div>
 
         <div class="field has-addons is-pulled-left">
           <div class="control">
@@ -15,7 +17,7 @@
               type="text"
               class="input is-rounded"
               v-on:keyup.enter="searchData"
-              placeholder="username"
+              placeholder="Type your username"
             />
           </div>
 
@@ -38,7 +40,6 @@
 <script>
 import axios from "axios";
 
-// import HelloWorld from './components/HelloWorld.vue'
 import User from "./components/User.vue";
 
 export default {
@@ -46,15 +47,11 @@ export default {
   data: function() {
     return {
       userName: [],
-      search: '',
+      search: "",
     };
   },
   methods: {
     fetch() {
-      // const params = {
-      //   page: this.page,
-      //   name: this.search,
-      // };
 
       let result = axios
         .get(
@@ -62,16 +59,12 @@ export default {
         )
         .then((res) => {
           this.userName = res.data.person;
-          console.log(res.data);
-          console.log(res.data.person.name);
         })
         .catch((err) => {
           console.log(err);
         });
-      console.log("edadfas");
     },
     searchData() {
-      // this.page = 1;
       this.fetch();
     },
   },
@@ -82,12 +75,20 @@ export default {
 </script>
 
 <style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+.hero{
+  box-shadow: 0 0.125em 0.25em rgba(10, 10, 10, 0.3);
+}
+#torreLogo {
+  width: 30%;
+}
+.hero-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
